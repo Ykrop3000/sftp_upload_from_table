@@ -1,48 +1,29 @@
-name: 'SFTP uploader'
-author: 'wycode.cn'
+name: "SFTP uploader"
+author: "wycode.cn"
 branding:
-  color: 'green'
-  icon: 'upload'
-description: 'upload files to server via SFTP'
+  color: "green"
+  icon: "upload"
+description: "upload files to server via SFTP"
 inputs:
-  host:
+  sheetUrl:
     required: true
-  port:
-    required: false
-    default: 22
-  username:
-    required: false
-    default: 'root'
-  password:
+  sheetName:
     required: true
-  compress:
-    required: false
-    default: false
   localDir:
     required: true
-  remoteDir:
-    required: true
+  exclude:
+    required: false
+    default: ""
   dryRun:
     required: false
     default: false
-  privateKey:
-    required: false
-    default: ''
-  passphrase:
-    required: false
-    default: ''
-  agent:
-    required: false
-    default: ''
-  exclude:
-    required: false
-    default: ''
   forceUpload:
     required: false
     default: false
   removeExtraFilesOnServer:
     required: false
     default: false
+
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "node16"
+  main: "dist/index.js"
