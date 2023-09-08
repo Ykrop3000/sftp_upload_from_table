@@ -52,6 +52,7 @@ const connect = __nccwpck_require__(8342);
 const exec = __nccwpck_require__(3974);
 
 function execute(host, username, password, command) {
+	console.log(command);
 	connect(
 		{ host: host, username: username, password: password },
 		function (err, ssh) {
@@ -59,6 +60,7 @@ function execute(host, username, password, command) {
 				{ command: command, ssh: ssh },
 				function (err, stdout, stderr, code) {
 					console.info(stdout);
+					console.info(err);
 				}
 			);
 		}
