@@ -1,10 +1,10 @@
 const core = require("@actions/core");
 const fs = require("fs");
 const { get_document } = require("./lib/google_sheets");
-const { get_client, execute } = require("./lib/ssh");
+const { execute } = require("./lib/ssh");
 const path = require("path");
 
-let Client = require("ssh2-sftp-client");
+const Client = require("ssh2-sftp-client");
 
 (async function () {
 	const doc = get_document(
@@ -17,7 +17,6 @@ let Client = require("ssh2-sftp-client");
 	const rows = await sheet.getRows();
 	rows.forEach((row) => {
 		let sftp = new Client();
-
 		const host = row.get("host");
 		const port = parseInt(row.get("port"));
 		const username = row.get("username");
@@ -101,13 +100,10 @@ let Client = require("ssh2-sftp-client");
 			}
 		}
 
-		const sshClient = get_client(
+		execute(
 			row.get("host"),
 			row.get("username"),
-			row.get("password")
-		);
-		execute(
-			sshClient,
+			row.get("password"),
 			`python3 ${row.get("remoteDir")}/configurator.py -id ${row.get(
 				"id"
 			)} -table ${core.getInput("sheetUrl")} -sheet ${core.getInput(
