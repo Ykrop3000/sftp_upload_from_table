@@ -23,6 +23,7 @@
     "google-auth-library": "^9.0.0",
     "google-spreadsheet": "^4.0.2",
     "minimatch": "^7.0.0",
+    "ssh2": "^1.14.0",
     "ssh2-sftp-client": "^9.0.4"
   },
   "devDependencies": {

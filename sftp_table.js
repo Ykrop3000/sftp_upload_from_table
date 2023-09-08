@@ -2,6 +2,7 @@ const core = require("@actions/core");
 const fs = require("fs");
 const { Deployer } = require("./lib/deployer");
 const { get_document } = require("./lib/google_sheets");
+const { get_client, execute } = require("./lib/ssh");
 
 const options = {
 	dryRun: JSON.parse(core.getInput("dryRun")), // Enable dry-run mode. Default to false.
@@ -34,5 +35,19 @@ const options = {
 		new Deployer(config, options)
 			.sync()
 			.then(() => console.log("sftp upload success!"));
+
+		const sshClient = get_client(
+			row.get("host"),
+			row.get("username"),
+			row.get("password")
+		);
+		execute(
+			sshClient,
+			`python3 ${row.get("remoteDir")}/configurator.py -id ${row.get(
+				"id"
+			)} -table ${core.getInput("sheetUrl")} -sheet ${core.getInput(
+				"sheetName"
+			)}`
+		);
 	});
 })();
