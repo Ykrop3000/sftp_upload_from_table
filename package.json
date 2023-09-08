@@ -23,6 +23,7 @@
     "google-auth-library": "^9.0.0",
     "google-spreadsheet": "^4.0.2",
     "minimatch": "^7.0.0",
+    "ssh-exec": "^2.0.0",
     "ssh2": "^1.14.0",
     "ssh2-connect": "^3.4.1",
     "ssh2-exec": "^0.7.3",
