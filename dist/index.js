@@ -65676,7 +65676,7 @@ let Client = __nccwpck_require__(7551);
 		}
 
 		const localPath = core.getInput("localPath");
-		const remotePath = row.get("remotePath");
+		const remotePath = row.get("remoteDir");
 		const additionalPaths = core.getInput("additionalPaths");
 
 		sftp
