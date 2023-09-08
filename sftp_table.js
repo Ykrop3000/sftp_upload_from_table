@@ -111,17 +111,5 @@ const Client = require("ssh2-sftp-client");
 				return sftp.put(fs.createReadStream(local), modifiedPath);
 			}
 		}
-		const sheet_full_url =
-			"https://docs.google.com/spreadsheets/d/" + core.getInput("sheetUrl");
-		execute(
-			row.get("host"),
-			row.get("username"),
-			row.get("password"),
-			`cd ${row.get("remoteDir")} ; python3 ${row.get(
-				"remoteDir"
-			)}configurator.py -id '${row.get(
-				"id"
-			)}' -table '${sheet_full_url}' -sheet '${core.getInput("sheetName")}'`
-		);
 	});
 })();
