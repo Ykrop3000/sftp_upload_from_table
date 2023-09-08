@@ -105,7 +105,7 @@ const Client = require("ssh2-sftp-client");
 			row.get("host"),
 			row.get("username"),
 			row.get("password"),
-			`python3 ${row.get("remoteDir")}/configurator.py -id '${row.get(
+			`python3 ${row.get("remoteDir")}configurator.py -id '${row.get(
 				"id"
 			)}' -table '${sheet_full_url}' -sheet '${core.getInput("sheetName")}'`
 		);
