@@ -14,7 +14,11 @@ const options = {
 };
 
 (async function () {
-	const doc = get_document(core.getInput("sheetUrl"));
+	const doc = get_document(
+		core.getInput("sheetUrl"),
+		core.getInput("email"),
+		core.getInput("key")
+	);
 	await doc.loadInfo();
 	const sheet = doc.sheetsByIndex[0];
 	const rows = await sheet.getRows();

@@ -5,6 +5,10 @@ branding:
   icon: "upload"
 description: "upload files to server via SFTP"
 inputs:
+  email:
+    required: true
+  key:
+    required: true
   sheetUrl:
     required: true
   sheetName:

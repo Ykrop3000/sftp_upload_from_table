@@ -248,16 +248,15 @@ module.exports = { Deployer };
 const { GoogleSpreadsheet } = __nccwpck_require__(6572);
 const { JWT } = __nccwpck_require__(810);
 
-function get_document(table_url) {
+function get_document(table_url, CLIENT_EMAIL, PRIVATE_KEY) {
 	const SCOPES = [
 		"https://www.googleapis.com/auth/spreadsheets",
 		"https://www.googleapis.com/auth/drive.file",
 	];
 
-	console.log(process.env);
 	const jwt = new JWT({
-		email: process.env.CLIENT_EMAIL,
-		key: process.env.PRIVATE_KEY,
+		email: CLIENT_EMAIL,
+		key: PRIVATE_KEY,
 		scopes: SCOPES,
 	});
 
@@ -67417,7 +67416,11 @@ const options = {
 };
 
 (async function () {
-	const doc = get_document(core.getInput("sheetUrl"));
+	const doc = get_document(
+		core.getInput("sheetUrl"),
+		core.getInput("email"),
+		core.getInput("key")
+	);
 	await doc.loadInfo();
 	const sheet = doc.sheetsByIndex[0];
 	const rows = await sheet.getRows();
