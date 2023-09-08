@@ -28,6 +28,25 @@ inputs:
     required: false
     default: false
 
+  additionalPaths:
+    description: "Map of the path to upload multiple files."
+    required: false
+    default: "{}"
+  agent:
+    description: "Path to ssh-agent"
+    required: false
+    default: "process.env.SSH_AGENT"
+  privateKey:
+    description: "Path to key file or directly the key (via secret or paste)"
+    required: false
+  privateKeyIsFile:
+    description: "Define if private key is a local file or string"
+    required: false
+    default: "false"
+  passphrase:
+    description: "Define a passphrase for encrypted private keys"
+    required: false
+
 runs:
   using: "node16"
   main: "dist/index.js"
